@@ -119,3 +119,58 @@ interpretacao(H <=> G, t) :-
 interpreta(F, I):-
     retractall(resposta(_, _)),
     interpretacao(F, I).
+
+% verificar interpretação do valor dado - solucao 2
+~ H :- not(H).
+
+H v _ :- H, !.
+_ v G :- G.
+
+H & G :- H, G.
+
+H => G :- not(H) v G.
+
+H <=> G :- 
+    H => G,
+    G => H.
+
+% Tabela verdade para 2 variavéis
+
+tabela(X, Y, F) :-
+    valor_verdade(X),
+    valor_verdade(Y), 
+    tab_verdade(X, Y, F),
+    fail. % encontra todos os valores possiveis para X e Y, consequentemente para F
+tabela(_, _, _). % finaliza com true.
+
+valor_verdade(true).
+valor_verdade(false).
+
+tab_verdade(X,Y,F) :-
+    write(X), write(' '), 
+    write(Y), write(' '), 
+    avalia(F), nl.
+
+avalia(F) :- F, !, write(true).
+avalia(_) :- write(false).
+
+% tabela verdade para qualquer qtd de variavéis
+
+tabela_verdade(Vars, F) :-
+    valores_verdade(Vars),
+    escreve_linha(Vars, F),
+    fail.
+
+escreve_linha(Vars, F) :-
+    escreve_variaveis(Vars),
+    avalia(F), nl.
+
+escreve_variaveis([V| Vars]):-
+    write(V), write(' '), !,
+    escreve_variaveis(Vars).
+escreve_variaveis([]).
+
+valores_verdade([V|Vars]) :-
+    valor_verdade(V),
+    valores_verdade(Vars).
+valores_verdade([]).
