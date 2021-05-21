@@ -3,7 +3,6 @@
 
 servidor(Porta) :-
     http_server(http_dispatch, [port(Porta)]).
-% acessando a pagina através de uma porta previamente definida
 
 :- http_handler(root(.), ola, []). % rota raiz
 :- http_handler(root(deutsche), hallo, []). % rota '/deutsche'
@@ -13,25 +12,25 @@ servidor(Porta) :-
 :- http_handler(root(latim), salve, []). % rota '/latim'
 
 ola(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Ola Mundo!~n').
 
 hallo(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Hallo Welt!~n').
 
 hola(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Hola Mundo!~n').
 
 hello(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Hello World!~n').
 
 bonjour(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Bonjour le monde!~n').
 
 salve(_Pedido) :-
-    format('Content-type: text/pain~n~n'), % define que o que virá depolas é texto
+    format('Content-type: text/pain~n~n'), % define que o que virá depois é texto
     format('Salve Orbis Terrarum!~n').

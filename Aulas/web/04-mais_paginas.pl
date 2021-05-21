@@ -4,18 +4,20 @@
 servidor(Porta) :-
     http_server(http_dispatch, [port(Porta)]).
 
+% PAGINA 1
 :- multifile http:location/3.
 :- dynamic http:location/3.
 
 http:location(arquivos, '/arquivos', []).
 
-:- http_handler(arquivos(texto), arquivo_estatico, []). % add uma outra pagina em '/arquivos/texto'
+:- http_handler(arquivos(texto), arquivo_estatico, []). % add uma outra pagina em 'localhost.../arquivos/texto'
 
 arquivo_estatico(_Pedido) :-
     format('Content-type: text/plain~n~n'),
     format('Algum dia eu enviarei o arquivo~n').
 
-:- http_handler(root(Lingua), bem_vindo(Lingua), []). % rota para cada lingua
+% PAGINA 2
+:- http_handler(root(Lingua), bem_vindo(Lingua), []). % rota para cada lingua em 'localhost.../Lingua'
 
 bem_vindo(Lingua, _Pedido) :-
     format('Content-type: text/pain~n~n'),
