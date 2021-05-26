@@ -1,0 +1,11 @@
+01 - victor
+dependentes + estados + convidados
+
+02 - leo 
+usarios + categoria_ambiente + imagem ambiente
+
+03 - anna
+reserva_has_convidados + reserva_cancelada 
+
+04 - ellen
+ambiente + reserva
