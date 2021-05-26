@@ -1,35 +1,35 @@
 :- module(
-       funcionário,
-       [ funcionário/5 ]
+       funcionario,
+       [ funcionario/5 ]
    ).
 
 :- use_module(library(persistency)).
 
 :- persistent
-   funcionário(matrícula:positive_integer,
+   funcionario(matrícula:positive_integer,
                nome:atom,
                departamento:nonneg,
-               salário:positive_integer,
+               salario:positive_integer,
                matrícula_gerente:positive_integer).
 
-:- initialization(db_attach('tbl_funcionário.pl', [])).
+:- initialization(db_attach('tbl_funcionario.pl', [])).
 
-insere(MatFunc, Nome, Departamento, Salário, MatrículaGerente):-
-    with_mutex(funcionário,
-               assert_funcionário(MatFunc, Nome, Departamento,
-                                  Salário, MatrículaGerente)).
+insere(MatFunc, Nome, Departamento, Salario, MatrículaGerente):-
+    with_mutex(funcionario,
+               assert_funcionario(MatFunc, Nome, Departamento,
+                                  Salario, MatrículaGerente)).
 
 remove(MatFunc):-
-    with_mutex(funcionário,
-               retract_funcionário(MatFunc, _Nome, _Departamento,
-                                   _Salário, _MatrículaGerente)).
+    with_mutex(funcionario,
+               retract_funcionario(MatFunc, _Nome, _Departamento,
+                                   _Salario, _MatrículaGerente)).
 
-atualiza(MatFunc, Nome, Departamento, Salário, MatrículaGerente):-
-    with_mutex(funcionário,
-               ( retractall_funcionário(MatFunc, _Nome, _Departamento,
-                                        _Salário, _MatrículaGerente),
-                 assert_funcionário(MatFunc, Nome, Departamento,
-                                    Salário, MatrículaGerente)) ).
+atualiza(MatFunc, Nome, Departamento, Salario, MatrículaGerente):-
+    with_mutex(funcionario,
+               ( retractall_funcionario(MatFunc, _Nome, _Departamento,
+                                        _Salario, _MatrículaGerente),
+                 assert_funcionario(MatFunc, Nome, Departamento,
+                                    Salario, MatrículaGerente)) ).
 
 sincroniza :-
     db_sync(gc(always)).
