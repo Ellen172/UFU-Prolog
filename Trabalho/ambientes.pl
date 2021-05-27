@@ -1,10 +1,13 @@
-:- dynamic ambientes/7.
+:- module( ambientes, [ambientes/7] ).
+:- use_module(library(persistency)).
 
-ambientes (Id_ambiente, % chave
-    Id_categoria_ambiente, 
-    % proveniente da tabela 'categoria_ambiente'
-    Amb_descricao_ambiente, 
-    Amb_hora_inicio, 
-    Amb_hora_termino, 
-    Amb_tempo_reserva, 
-    Amb_qtd_convidados).
+:- persistent
+    ambientes(  id_ambiente: integer, % chave
+                id_categoria_ambiente: integer, % proveniente da tabela 'categoria_ambiente'
+                amb_descricao_ambiente: atom, 
+                amb_hora_inicio: integer, 
+                amb_hora_termino: integer, 
+                amb_tempo_reserva: integer, 
+                amb_qtd_convidados: integer ).
+
+:- initialization(db_attach('tabela_ambientes.pl', [])).
