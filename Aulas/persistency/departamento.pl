@@ -5,21 +5,21 @@
 :- use_module(library(persistency)).
 
 :- persistent
-   departamento( número:nonneg,
+   departamento( numero:nonneg,
                  nome:atom,
                  matrícula_gerente:positive_integer ).
 
 :- initialization(db_attach('tbl_departamento.pl', [])).
 
-insere(Número, Nome, MatrículaGerente):-
+insere(Numero, Nome, MatriculaGerente):-
     with_mutex(departamento,
-               assert_departamento(Número, Nome, MatrículaGerente)).
+               assert_departamento(Numero, Nome, MatriculaGerente)).
 
-remove(Número):-
+remove(Numero):-
     with_mutex(departamento,
-               assert_departamento(Número, _Nome, _MatrículaGerente)).
+               assert_departamento(Numero, _Nome, _MatriculaGerente)).
 
-atualiza(Número, Nome, MatrículaGerente):-
+atualiza(Numero, Nome, MatriculaGerente):-
     with_mutex(departamento,
-               ( retractall_departamento(Número, Nome, MatrículaGerente),
-                 assert_departamento(Número, Nome, MatrículaGerente)) ).
+               ( retractall_departamento(Numero, Nome, MatriculaGerente),
+                 assert_departamento(Numero, Nome, MatriculaGerente)) ).
