@@ -20,10 +20,10 @@ servidor(Porta) :-
 */
 
 home(Pedido) :-
-	reply_html_page( title('Demonstração de GET'),
-		           [ \página(Pedido) ]).
+	reply_html_page( title('Demonstracao de GET'),
+		           [ \pagina(Pedido) ]).
 
-página(Pedido) -->
+pagina(Pedido) -->
     {
         /* É preciso tratar a exceção, pois http_parameters gera uma
            uma exceção caso um parâmetro seja inválido */
@@ -37,11 +37,11 @@ página(Pedido) -->
     html([h1('Resposta do servidor') | HTML]).
 
 
-/* Essa página será exibida em caso de erro de validação
+/* Essa pagina será exibida em caso de erro de validação
    de algum parâmetro */
-página(_Pedido) -->
+pagina(_Pedido) -->
     html([ h1('Erro'),
-           p('Algum parâmetro não é válido')
+           p('Algum parametro nao e valido')
          ]).
 
 
