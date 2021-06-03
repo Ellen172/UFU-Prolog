@@ -59,9 +59,9 @@ editar(AtomId, _Pedido):-
 form_bookmark(Id, Titulo, URL) -->
     html(form([ id('bookmark-form'),
                 onsubmit("redirecionaResposta(event, '/')"),
-                action('/api/bookmarks/~w' - Id), method('POST') ],
+                action('/api/v1/bookmarks/~w' - Id), method('POST') ],
               [ \metodo_envio('PUT'),
-                \campo_não_editável(id, 'Id', text, Id),
+                \campo_nao_editavel(id, 'Id', text, Id),
                 \campo(titulo, 'Titulo', text, Titulo),
                 \campo(url, 'URL', url, URL),
                 button([type(submit), class('btn btn-primary')], 'Enviar')
@@ -75,7 +75,7 @@ campo(Nome, Rotulo, Tipo, Valor) -->
                        id(Nome), name(Nome), value(Valor)])
              ] )).
 
-campo_não_editável(Nome, Rotulo, Tipo, Valor) -->
+campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
