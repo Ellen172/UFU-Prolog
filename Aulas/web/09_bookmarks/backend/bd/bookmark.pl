@@ -8,23 +8,23 @@
 
 :- persistent
    bookmark( id:nonneg,
-             título:string,
+             titulo:string,
              url:string ).
 
 :- initialization( ( db_attach('./backend/bd/tbl_bookmark.pl', []),
                      at_halt(db_sync(gc(always))) )).
 
 
-insere(Id, Título, URL):-
+insere(Id, Titulo, URL):-
     chave:pk(bookmark, Id),
     with_mutex(bookmark,
-               assert_bookmark(Id, Título, URL)).
+               assert_bookmark(Id, Titulo, URL)).
 
 remove(Id):-
     with_mutex(bookmark,
-               retractall_bookmark(Id, _Título, _URL)).
+               retractall_bookmark(Id, _Titulo, _URL)).
 
-atualiza(Id, Título, URL):-
+atualiza(Id, Titulo, URL):-
     with_mutex(bookmark,
-               ( retractall_bookmark(Id, _Título, _URL),
-                 assert_bookmark(Id, Título, URL)) ).
+               ( retractall_bookmark(Id, _Titulo, _URL),
+                 assert_bookmark(Id, Titulo, URL)) ).

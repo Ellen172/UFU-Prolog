@@ -34,26 +34,26 @@ bookmarks(delete, AtomId, _Pedido):-
     throw(http_reply(no_content)).
 
 /* Se algo ocorrou de errado */
-bookmarks(Método, Id, _Pedido) :-
-    throw(http_reply(method_not_allowed(Método, Id))).
+bookmarks(Metodo, Id, _Pedido) :-
+    throw(http_reply(method_not_allowed(Metodo, Id))).
 
 
-insere_tupla( _{ titulo:Título, url:URL}, Id):-
-    bookmark:insere(Id, Título, URL).
+insere_tupla( _{ titulo:Titulo, url:URL}, Id):-
+    bookmark:insere(Id, Titulo, URL).
 
-atualiza_tupla( _{id:AtomId, titulo:Título, url:URL}, Id):-
+atualiza_tupla( _{id:AtomId, titulo:Titulo, url:URL}, Id):-
     atom_number(AtomId, Id),
-    bookmark:atualiza(Id, Título, URL).
+    bookmark:atualiza(Id, Titulo, URL).
 
 envia_tupla(Id):-
-    (  bookmark:bookmark(Id, Título, URL)
-    -> reply_json_dict( _{id:Id, titulo:Título, url:URL} )
+    (  bookmark:bookmark(Id, Titulo, URL)
+    -> reply_json_dict( _{id:Id, titulo:Titulo, url:URL} )
     ;  throw(http_reply(not_found(Id)))
     ).
 
 
 envia_tabela :-
-    findall( _{id:Id, titulo:Título, url:URL},
-             bookmark:bookmark(Id,Título,URL),
+    findall( _{id:Id, titulo:Titulo, url:URL},
+             bookmark:bookmark(Id,Titulo,URL),
              Tuplas ),
     reply_json_dict(Tuplas).

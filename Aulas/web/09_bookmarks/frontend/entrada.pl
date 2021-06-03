@@ -22,15 +22,15 @@ tabela_de_bookmarks -->
     html([ \html_requires(css('entrada.css')),
            div(class('table-responsive'),
                [ div(class('table-wrapper'),
-                     [ \título_tabela('Bookmarks'),
+                     [ \titulo_tabela('Bookmarks'),
                        \tabela
                      ])])]).
 
-título_tabela(Título) -->
+titulo_tabela(Titulo) -->
     html(div(class('table-title'),
              div(class(row),
                  [ div(class('col-sm-8'),
-                       h2(b(Título))),
+                       h2(b(Titulo))),
                    div(class('col-sm-4'),
                        a([ href('/bookmark'),
                            class('btn btn-info add-new')],
@@ -40,29 +40,29 @@ título_tabela(Título) -->
 
 tabela -->
     html(table(class('table table-striped w-auto'),
-               [ \cabeçalho,
+               [ \cabecalho,
                  tbody(\corpo_tabela)
                ])).
 
-cabeçalho -->
+cabecalho -->
     html(thead(tr([ th([scope(col)], '#'),
-                    th([scope(col)], 'Título'),
+                    th([scope(col)], 'Titulo'),
                     th([scope(col)], 'URL'),
-                    th([scope(col)], 'Ações')
+                    th([scope(col)], 'Acoes')
                   ]))).
 
 
 
 corpo_tabela -->
     {
-        findall( tr([th(scope(row), Id), td(Título), td(URL), td(Ações)]),
-                 ( bookmark(Id, Título, URL), ações(Id,Ações) ),
+        findall( tr([th(scope(row), Id), td(Titulo), td(URL), td(Acoes)]),
+                 ( bookmark(Id, Titulo, URL), acoes(Id,Acoes) ),
                  Linhas )
     },
     html(Linhas).
 
 
-ações(Id, Campo):-
+acoes(Id, Campo):-
     Campo = [ a([ class(edit), title('Alterar'),
                   href('/bookmark/editar/~w' - Id),
                   'data-toggle'(tooltip)],

@@ -23,15 +23,15 @@ form_bookmark -->
     html(form([ id('bookmark-form'),
                 onsubmit("redirecionaResposta(event, '/')"),
                 action('/api/v1/bookmarks/'), method('POST') ],
-              [ \campo(titulo, 'Título', text),
+              [ \campo(titulo, 'Titulo', text),
                 \campo(url, 'URL', url),
                 button([type(submit), class('btn btn-primary')], 'Enviar')
              ])).
 
 
-campo(Nome, Rótulo, Tipo) -->
+campo(Nome, Rotulo, Tipo) -->
     html(div(class('mb-3'),
-             [ label([for(Nome), class('form-label')], Rótulo),
+             [ label([for(Nome), class('form-label')], Rotulo),
                input([type(Tipo), class('form-control'), id(Nome), name(Nome)])
              ] )).
 
@@ -40,7 +40,7 @@ campo(Nome, Rótulo, Tipo) -->
 
 editar(AtomId, _Pedido):-
     atom_number(AtomId, Id),
-    ( bookmark:bookmark(Id, Título, URL)
+    ( bookmark:bookmark(Id, Titulo, URL)
     ->
                reply_html_page(
                    bootstrap,
@@ -50,38 +50,38 @@ editar(AtomId, _Pedido):-
                            \html_requires(js('rest.js')),
                            \html_requires(js('bookmark.js')),
                            h1('Meus bookmarks'),
-                           \form_bookmark(Id, Título, URL)
+                           \form_bookmark(Id, Titulo, URL)
                          ]) ])
     ; throw(http_reply(not_found(Id)))
     ).
 
 
-form_bookmark(Id, Título, URL) -->
+form_bookmark(Id, Titulo, URL) -->
     html(form([ id('bookmark-form'),
                 onsubmit("redirecionaResposta(event, '/')"),
-                action('/api/v1/bookmarks/~w' - Id), method('POST') ],
-              [ \método_envio('PUT'),
+                action('/api/bookmarks/~w' - Id), method('POST') ],
+              [ \metodo_envio('PUT'),
                 \campo_não_editável(id, 'Id', text, Id),
-                \campo(titulo, 'Título', text, Título),
+                \campo(titulo, 'Titulo', text, Titulo),
                 \campo(url, 'URL', url, URL),
                 button([type(submit), class('btn btn-primary')], 'Enviar')
              ])).
 
 
-campo(Nome, Rótulo, Tipo, Valor) -->
+campo(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label')], Rótulo),
+             [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
                        id(Nome), name(Nome), value(Valor)])
              ] )).
 
-campo_não_editável(Nome, Rótulo, Tipo, Valor) -->
+campo_não_editável(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label')], Rótulo),
+             [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
                        id(Nome), name(Nome), value(Valor),
                        readonly ])
              ] )).
 
-método_envio(Método) -->
-    html(input([type(hidden), name('_método'), value(Método)])).
+metodo_envio(Metodo) -->
+    html(input([type(hidden), name('_metodo'), value(Metodo)])).
