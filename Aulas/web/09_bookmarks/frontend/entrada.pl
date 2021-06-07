@@ -32,11 +32,11 @@ titulo_tabela(Titulo) -->
                  [ div(class('col-sm-8'),
                        h2(b(Titulo))),
                    div(class('col-sm-4'),
-                       a([ href('/bookmark'),
-                           class('btn btn-info add-new')],
-                         [ i(class('fas fa-plus'),[]),
-                           'Novo'])
-                      )]))).
+                       a([ href('/bookmark'), class('btn btn-info add-new')],
+                         [ i(class('fas fa-plus'),[]), 'Novo'])
+                      )
+                ])
+        )).
 
 tabela -->
     html(table(class('table table-striped w-auto'),

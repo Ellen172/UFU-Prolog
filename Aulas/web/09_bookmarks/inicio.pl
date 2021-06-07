@@ -10,7 +10,7 @@
 % Para as ações de logging
 :- use_module(library(http/http_log)).
 
-
+% Para usar JSON
 :- use_module(library(http/http_json)).
 
 /* Aumenta a lista de tipos aceitos pelo servidor */

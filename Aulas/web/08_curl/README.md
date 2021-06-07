@@ -8,7 +8,6 @@ curl -v -d '{"id": "5", "titulo": "exemplo"}'
 ## POST (de um arquivo)
 curl -v -d @arquivo.json -H 'Content-Type: application/json'
     
-
 ## GET (obter)
 curl -v http://localhost:8000/api/v1/bookmarks/
 
